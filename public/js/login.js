@@ -1,11 +1,11 @@
 import axios from "axios";
 import { showAlert } from "./alert";
 export const login = async (email, password) => {
-  console.log(email, password);
+  // console.log(email, password);
   try {
     const result = await axios({
       method: "POST",
-      url: "http://localhost:8080/api/v1/users/login",
+      url: "/api/v1/users/login",
       data: {
         email,
         password,
@@ -26,10 +26,10 @@ export const logout = async () => {
   try {
     const res = await axios({
       method: "GET",
-      url: "http://localhost:8080/api/v1/users/logout",
+      url: "/api/v1/users/logout",
     });
     if (res.data.status === "success") {
-      location.reload(true); //true for reloading it from server side and not using browser cache
+      location.assign("/login"); //true for reloading it from server side and not using browser cache
     }
   } catch (er) {
     console.log(er);

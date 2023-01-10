@@ -22,7 +22,7 @@ try {
       useFindAndModify: false,
     })
     .then(() => {
-      console.log("Successfully Connected");
+      console.log("DB connection successfull");
     });
 } catch (er) {
   console.log(er);

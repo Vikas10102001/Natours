@@ -10,7 +10,6 @@ class Email {
   }
   newTransport() {
     if (process.env.NODE_ENV === "production") {
-      console.log("hey");
       return nodemailer.createTransport({
         service:"SendGrid",
         auth: {

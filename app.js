@@ -3,6 +3,7 @@ const cookieParser=require("cookie-parser")
 const express = require("express");
 const morgan = require("morgan");
 const cors=require("cors")
+const compression=require("compression")
 const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/userRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
@@ -18,6 +19,7 @@ app.set("views", path.join(__dirname, "views"));
 
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
+app.use(compression())//for text compression
 app.use((req, res, next) => {
   req.requestTime = new Date().toLocaleString();
   next();
