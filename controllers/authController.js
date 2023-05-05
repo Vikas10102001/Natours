@@ -27,7 +27,7 @@ const createToken = (user, statusCode, res) => {
 
   res.status(statusCode).json({
     status: "success",
-    token,
+    // token,
     data: user,
   });
 };
@@ -57,6 +57,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   //if users is not present or password is incorrect
   const user = await User.findOne({ email }).select("+password");
+  // console.log(await user.correctPassword(password, user.password))
   if (!user || !(await user.correctPassword(password, user.password)))
     return next(new AppError(401, "Incorrect email or password"));
 

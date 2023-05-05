@@ -27,7 +27,7 @@ try {
 } catch (er) {
   console.log(er);
 }
-const server = app.listen(8080, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log(`Listening on ${process.env.PORT} `);
 });
 

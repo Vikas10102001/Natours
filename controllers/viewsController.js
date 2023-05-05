@@ -32,28 +32,32 @@ exports.getTour = catchAsync(async (req, res, next) => {
 
 exports.getLoginForm = async (req, res) => {
   res.status(200).render("login", {
-    title: "Login"
+    title: "Login",
   });
 };
+exports.getSignupForm = async (req, res) => {
+  res.status(200).render("signup", {
+    title: "Signup",
+  });
+};
+exports.getAccount = catchAsync(async (req, res, next) => {
+  res.status(200).render("account", {
+    title: "Your account",
+  });
+});
 
-exports.getAccount=catchAsync(async(req,res,next)=>{
-  res.status(200).render('account',{
-    title:'Your account'
-  })
-})
-
-exports.getMyTours=catchAsync(async(req,res,next)=>{
+exports.getMyTours = catchAsync(async (req, res, next) => {
   //Get all bookings for a particular user
-    const bookings=await Booking.find({user:req.user.id})
-    
-    const tourIds=bookings.map(el=>{
-      return el.tour
-    })
+  const bookings = await Booking.find({ user: req.user.id });
+
+  const tourIds = bookings.map((el) => {
+    return el.tour;
+  });
   //Get tour using booking data
-    const tours=await Tour.find({_id:{$in:tourIds}})
-    // console.log(tours)
-    res.status(200).render("overview", {
-      title: "My tours",
-      tours,
-    });
-})
+  const tours = await Tour.find({ _id: { $in: tourIds } });
+  // console.log(tours)
+  res.status(200).render("overview", {
+    title: "My tours",
+    tours,
+  });
+});
